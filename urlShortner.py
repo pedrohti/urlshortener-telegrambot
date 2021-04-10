@@ -31,7 +31,7 @@ def shorten(update: Update, context: CallbackContext):
 
 
 if __name__ == '__main__':
-    updater = Updater(os.getenv('API_KEY'))
+    updater = Updater(os.getenv('BOT_API_KEY'))
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('url', shorten, pass_args=True))
     updater.start_polling()
