@@ -31,7 +31,6 @@ def shorten(update: Update, context: CallbackContext):
                 chat_id, f"✅ Shortened URL(s):\n{url}")
         if err != "":
             context.bot.send_message(chat_id, f"❌ Invalid(s) URL(s)!\n{err}")
-    return "Ok"
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -41,10 +40,11 @@ def webhook():
     dp.add_handler(CommandHandler('url', shorten, pass_args=True))
     # updater.start_polling()
     # updater.idle()
+    return "Ok"
 
 
 def index():
-    return webhook()
+    return webhook(), 200
 
 # if __name__ == '__main__':
 #     updater = Updater(TOKEN)
