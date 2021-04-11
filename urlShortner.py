@@ -4,6 +4,7 @@ from flask import Flask
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 import pyshorteners
+from urllib3 import request
 
 load_dotenv()
 app = Flask(__name__)
@@ -37,7 +38,9 @@ def shorten(update: Update, context: CallbackContext):
 def webhook():
     updater = Updater(TOKEN)
     dp = updater.dispatcher
-    dp.add_handler(CommandHandler('url', shorten, pass_args=True))
+    if request.method == 'POST':
+        dp.add_handler(CommandHandler('url', shorten, pass_args=True))
+        return "ok"
     updater.start_polling()
     updater.idle()
 
