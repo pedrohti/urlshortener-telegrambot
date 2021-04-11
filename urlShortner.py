@@ -31,6 +31,7 @@ def shorten(update: Update, context: CallbackContext):
                 chat_id, f"✅ Shortened URL(s):\n{url}")
         if err != "":
             context.bot.send_message(chat_id, f"❌ Invalid(s) URL(s)!\n{err}")
+    return "Ok"
 
 
 @app.route("/", methods=['GET', 'POST'])
