@@ -1,1 +1,1 @@
-web: python3 urlShortner.py
+web: gunicorn urlShortner:app
